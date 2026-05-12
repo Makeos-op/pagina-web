@@ -1,7 +1,7 @@
 from fasthtml.common import *
 import os
 
-# 1. Definimos la app al inicio para que Vercel la vea primero
+# 1. Definimos la app. Vercel busca este objeto 'app'.
 app, rt = fasthtml_app(
     pico=False,
     hdrs=(
@@ -9,19 +9,21 @@ app, rt = fasthtml_app(
     )
 )
 
-# 2. Intentamos leer el archivo con una ruta absoluta
-path = os.path.join(os.path.dirname(__file__), "paginaweb.html")
+# 2. Ruta absoluta para evitar errores de 'File Not Found' en Vercel
+CUR_DIR = os.path.dirname(__file__)
+HTML_PATH = os.path.join(CUR_DIR, "index.html")
 
-try:
-    with open(path, "r", encoding="utf-8") as f:
-        html_content = f.read()
-except FileNotFoundError:
-    html_content = "<h1>Error: No se encontró paginaweb.html en el servidor</h1>"
+def get_html_content():
+    try:
+        with open(HTML_PATH, "r", encoding="utf-8") as f:
+            return f.read()
+    except Exception:
+        return "<h1>Error: No se pudo cargar paginaweb.html</h1>"
 
 @rt("/")
 def get():
-    return NotStr(html_content)
+    return NotStr(get_html_content())
 
-# 3. Esto es solo para tu PC, Vercel lo ignora
+# Esto permite que Vercel importe 'app' sin ejecutar el servidor local
 if __name__ == "__main__":
     serve()
