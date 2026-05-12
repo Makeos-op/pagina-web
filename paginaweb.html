@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindHealth – Tu bienestar mental importa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #4ecdc4;
+    --navy: #1a2a4a;
+    --red: #e05a4e;
+    --yellow: #f5e642;
+    --white: #ffffff;
+    --gray-bg: #f8f9fa;
+    --text: #1a2a4a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; color: var(--text); line-height: 1.6; overflow-x: hidden; }
+  h1, h2, h3 { font-family: 'Syne', sans-serif; font-weight: 800; }
+
+  /* Navbar */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 1000;
+  }
+  .logo { font-size: 1.5rem; font-weight: 900; color: var(--navy); }
+  .logo span { color: var(--teal); }
+  .nav-links a { text-decoration: none; color: var(--navy); margin-left: 30px; font-weight: 600; font-size: 0.95rem; }
+  .btn-nav { background: var(--navy); color: white !important; padding: 10px 20px; border-radius: 50px; }
+
+  /* Hero Section */
+  .hero {
+    display: flex;
+    align-items: center;
+    padding: 80px 5%;
+    background: #eef7f6;
+    min-height: 80vh;
+  }
+  .hero-content { flex: 1; padding-right: 50px; }
+  .hero-content h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px; color: var(--navy); }
+  .hero-content p { font-size: 1.1rem; margin-bottom: 30px; color: #555; max-width: 500px; }
+  .hero-image { flex: 1; position: relative; }
+  .hero-image img { width: 100%; border-radius: 30px; }
+  .cta-group { display: flex; gap: 15px; }
+  .btn-primary { display: inline-block; background: var(--teal); color: white; padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: 700; border: none; cursor: pointer; }
+  .btn-secondary { display: inline-block; background: white; color: var(--navy); padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: 700; border: 2px solid var(--navy); }
+
+  /* Metrics Section */
+  .metrics {
+    display: flex;
+    justify-content: space-around;
+    padding: 60px 5%;
+    background: var(--white);
+    text-align: center;
+  }
+  .metric-item h2 { font-size: 2.5rem; color: var(--teal); }
+  .metric-item p { font-weight: 600; color: var(--navy); }
+
+  /* Services / Features */
+  .features { padding: 100px 5%; background: var(--gray-bg); }
+  .features-header { text-align: center; margin-bottom: 60px; }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+  .feature-card { background: white; padding: 40px; border-radius: 24px; transition: transform 0.3s ease; }
+  .feature-card:hover { transform: translateY(-10px); }
+  .feature-icon { font-size: 2.5rem; margin-bottom: 20px; }
+  .feature-card h3 { margin-bottom: 15px; }
+
+  /* Content Sections */
+  .split-section { display: flex; align-items: center; padding: 100px 5%; gap: 60px; }
+  .split-section.reverse { flex-direction: row-reverse; }
+  .split-image { flex: 1; }
+  .split-image img { width: 100%; border-radius: 24px; box-shadow: 20px 20px 0px var(--yellow); }
+  .split-text { flex: 1; }
+  .split-text h2 { font-size: 2.8rem; margin-bottom: 20px; }
+  .split-text ul { list-style: none; margin-top: 25px; }
+  .split-text li { margin-bottom: 15px; display: flex; align-items: center; font-weight: 600; }
+  .split-text li::before { content: '✔'; color: var(--teal); margin-right: 15px; font-weight: 900; }
+
+  /* Testimonials */
+  .testimonials { padding: 100px 5%; background: var(--navy); color: white; text-align: center; }
+  .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+  .testi-card { background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; text-align: left; }
+  .testi-author { margin-top: 20px; display: flex; align-items: center; gap: 10px; }
+  .testi-avatar { width: 40px; height: 40px; background: var(--teal); border-radius: 50%; }
+
+  /* Footer */
+  footer { padding: 80px 5% 40px; background: var(--white); border-top: 1px solid #eee; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 60px; }
+  .footer-col h4 { margin-bottom: 25px; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 12px; }
+  .footer-col a { text-decoration: none; color: #666; }
+  
+  @media (max-width: 768px) {
+    .hero, .split-section, .split-section.reverse { flex-direction: column; text-align: center; }
+    .hero-content { padding-right: 0; margin-bottom: 40px; }
+    .cta-group { justify-content: center; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Mind<span>Health</span></div>
+  <div class="nav-links">
+    <a href="#">Inicio</a>
+    <a href="#">Servicios</a>
+    <a href="#">Nosotros</a>
+    <a href="https://mindhealth-g6-hct4.onrender.com/swagger-ui/index.html#/" class="btn-nav" target="_blank">Agendar Cita</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Tu salud mental es nuestra prioridad</h1>
+    <p>Encuentra el equilibrio emocional que necesitas con el acompañamiento de profesionales especializados en bienestar psicológico.</p>
+    <div class="cta-group">
+      <a href="https://mindhealth-g6-hct4.onrender.com/swagger-ui/index.html#/" class="btn-primary" target="_blank">Empieza ahora</a>
+      <a href="https://mindhealth-g6-hct4.onrender.com/swagger-ui/index.html#/" class="btn-secondary" target="_blank">Saber más</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1000" alt="Profesional salud mental">
+  </div>
+</section>
+
+<section class="metrics">
+  <div class="metric-item">
+    <h2>15k+</h2>
+    <p>Pacientes Felices</p>
+  </div>
+  <div class="metric-item">
+    <h2>120+</h2>
+    <p>Especialistas</p>
+  </div>
+  <div class="metric-item">
+    <h2>98%</h2>
+    <p>Casos de Éxito</p>
+  </div>
+</section>
+
+<section class="split-section">
+  <div class="split-image">
+    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1000" alt="Sesión de terapia">
+  </div>
+  <div class="split-text">
+    <h2>Acompañamiento personalizado en cada paso</h2>
+    <p>Entendemos que cada proceso es único. Por eso, diseñamos planes terapéuticos adaptados a tu realidad y necesidades específicas.</p>
+    <ul>
+      <li>Terapia individual y de pareja</li>
+      <li>Especialistas en ansiedad y depresión</li>
+      <li>Atención online y presencial</li>
+      <li>Seguimiento continuo</li>
+    </ul>
+  </div>
+</section>
+
+<section class="features">
+  <div class="features-header">
+    <h2>¿Por qué elegir MindHealth?</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🌿</div>
+      <h3>Enfoque Integral</h3>
+      <p>No solo tratamos síntomas, buscamos el origen para un bienestar duradero y profundo.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤝</div>
+      <h3>Confidencialidad</h3>
+      <p>Un espacio seguro y privado donde puedes expresarte sin juicios ni preocupaciones.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <h3>Flexibilidad</h3>
+      <p>Accede a tus sesiones desde cualquier lugar con nuestra plataforma de teleconsulta.</p>
+    </div>
+  </div>
+</section>
+
+<section class="split-section reverse">
+  <div class="split-image">
+    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=1000" alt="Mindfulness">
+  </div>
+  <div class="split-text">
+    <h2>Herramientas para tu vida diaria</h2>
+    <p>Más allá de las sesiones, te brindamos recursos prácticos para gestionar tus emociones en el día a día.</p>
+    <ul>
+      <li>Ejercicios de respiración guiada</li>
+      <li>Talleres de inteligencia emocional</li>
+      <li>Comunidad de apoyo</li>
+    </ul>
+    <a href="https://mindhealth-g6-hct4.onrender.com/swagger-ui/index.html#/" class="btn-primary" style="margin-top: 30px;" target="_blank">Descubre recursos</a>
+  </div>
+</section>
+
+<section class="testimonials">
+  <h2>Lo que dicen nuestros pacientes</h2>
+  <div class="testimonial-grid">
+    <div class="testi-card">
+      <p>"Cambió mi forma de ver los problemas. El apoyo que recibí fue fundamental para mi recuperación emocional."</p>
+      <div class="testi-author">
+        <div class="testi-avatar"></div>
+        <div><strong>María García</strong><br><small>Paciente hace 1 año</small></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <p>"La plataforma online es súper sencilla de usar y los profesionales son de primer nivel. Altamente recomendado."</p>
+      <div class="testi-author">
+        <div class="testi-avatar"></div>
+        <div><strong>Juan Pérez</strong><br><small>Paciente hace 6 meses</small></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <p>"Encontré la paz que tanto buscaba. Las herramientas de mindfulness me han servido muchísimo en el trabajo."</p>
+      <div class="testi-author">
+        <div class="testi-avatar"></div>
+        <div><strong>Ana López</strong><br><small>Paciente hace 3 meses</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="logo">Mind<span>Health</span></div>
+      <p style="margin-top: 20px;">Cuidamos de ti, estés donde estés. Líderes en bienestar mental digital.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#">Terapia Individual</a></li>
+        <li><a href="#">Terapia Pareja</a></li>
+        <li><a href="#">Talleres</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#">Sobre nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <p>📧 hola@mindhealth.com</p>
+      <p>📞 +34 900 123 456</p>
+    </div>
+  </div>
+  <div style="text-align: center; color: #999; border-top: 1px solid #eee; padding-top: 20px;">
+    © 2025 MindHealth. Todos los derechos reservados.
+  </div>
+</footer>
+
+</body>
+</html>
